@@ -76,6 +76,21 @@ trait VerifiableTrait
             ];
         }
 
+        // Maximum attempts exceeded
+        if ($codeModel->attempts >= config('verifiable.max_attempts')) {
+            $codeModel->increment('attempts');
+            $codeModel->save();
+
+            $backOffTime = Carbon::now()->diffInMinutes($codeModel->expires_at);
+
+            return [
+                'status' => false,
+                'statusDesc' => 'MaxAttemptsExceeded',
+                'retry_after' => $codeModel->expires_at,
+                'message' => "Maximum attempts to validate token exceeded. Retry after $backOffTime minutes",
+            ];
+        }
+
         if ((string) $codeModel->code !== (string) $token) {
             if (is_null($codeModel->attempts)) {
                 $codeModel->attempts = 1;
@@ -89,21 +104,6 @@ trait VerifiableTrait
                 'status' => false,
                 'statusDesc' => 'Invalid',
                 'message' => 'Invalid Token Provided',
-            ];
-        }
-
-        // Maximum attempts exceeded
-        if ($codeModel->attempts >= config('verifiable.max_attempts')) {
-            $codeModel->increment('attempts');
-            $codeModel->save();
-
-            $backOffTime = Carbon::now()->diffForHumans($codeModel->expires_at);
-
-            return [
-                'status' => false,
-                'statusDesc' => 'MaxAttemptsExceeded',
-                'retry_after' => $codeModel->expires_at,
-                'message' => 'Maximum attempts to validate token exceeded. Retry after ' . $backOffTime,
             ];
         }
 
