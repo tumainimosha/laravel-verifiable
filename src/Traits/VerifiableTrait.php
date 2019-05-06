@@ -88,7 +88,7 @@ trait VerifiableTrait
             return [
                 'status' => false,
                 'statusDesc' => 'Invalid',
-                'message' => 'InvalidToken',
+                'message' => 'Invalid Token Provided',
             ];
         }
 
