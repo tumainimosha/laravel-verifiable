@@ -5,7 +5,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/tumainimosha/verifiable.svg?style=flat-square)](https://packagist.org/packages/tumainimosha/verifiable)
 
 ## Install
-`composer require tumainimosha/verifiable`
+`composer require tumainimosha/laravel-verifiable`
 
 ## Usage
 Write a few lines about the usage of this package.
