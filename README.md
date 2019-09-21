@@ -7,6 +7,21 @@
 ## Install
 `composer require tumainimosha/laravel-verifiable`
 
+### Publish Migrations
+
+```bash
+php artisan vendor:publish --provider="Tumainimosha\Verifiable\VerifiableServiceProvider" --tag="migrations"
+php artisan migrate
+```
+
+### Publish Configuration File
+
+Publish config file to customize the default package config.
+
+```bash
+php artisan vendor:publish --provider="Tumainimosha\Verifiable\VerifiableServiceProvider" --tag="config"
+```
+
 ## Usage
 Write a few lines about the usage of this package.
 

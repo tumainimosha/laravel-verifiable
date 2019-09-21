@@ -36,6 +36,10 @@ class VerifiableServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../config/verifiable.php' => config_path('verifiable.php'),
             ], 'config');
+
+            $this->publishes([
+                __DIR__ . '/../database/migrations' => database_path('database'),
+            ], 'migrations');
         }
     }
 }
