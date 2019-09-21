@@ -16,7 +16,7 @@ class VerifiableServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/verifiable.php', 'verifiable');
         $this->publishThings();
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'Verifiable');
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
     }
 
@@ -38,7 +38,7 @@ class VerifiableServiceProvider extends ServiceProvider
             ], 'config');
 
             $this->publishes([
-                __DIR__ . '/../database/migrations' => database_path('database'),
+                __DIR__ . '/database/migrations' => database_path('database'),
             ], 'migrations');
         }
     }
